@@ -30,17 +30,9 @@ public:
     double get_long() const{
         return longitude;
     }
-    void affiche(std::ostream & out) const override{
-        Multimedia::affiche(out);
-        out <<"La latitude est: "<<Photo::latitude<<endl;
-        out <<"La longitude est: "<<Photo::longitude<<endl;
-    }
-    void display() const override{
-        string p=Multimedia::get_path();
-        string n=Multimedia::get_name();
-        string command="open " +p + n;
-        system(command.data());
-    }
+    void affiche(std::ostream & out) const override;
+
+    void display() const override;
 };
 
 #endif

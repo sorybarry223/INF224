@@ -3,17 +3,18 @@
 #include <string.h>
 #include "multimedia.h"
 #include "video.h"
-
+#include "photo.h"
 using namespace std;
 
-void Video::affiche(std::ostream & out) const{
+void Photo::affiche(std::ostream & out) const{
         Multimedia::affiche(out);
-        out <<"La duree est: "<<Video::duree<<endl;
+        out <<"La latitude est: "<<Photo::latitude<<endl;
+        out <<"La longitude est: "<<Photo::longitude<<endl;
 }
 
-void Video::display() const{
+void Photo::display() const{
         string p=Multimedia::get_path();
         string n=Multimedia::get_name();
-        string command="open "+ p+n;
+        string command="open " +p + n;
         system(command.data());
 }

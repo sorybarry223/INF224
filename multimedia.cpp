@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+using namespace std;
 void Multimedia::set_name(string n){
     name=n;
 }

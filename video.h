@@ -22,16 +22,8 @@ public:
     unsigned int get_duree() const{
         return duree;
     }
-    void affiche(std::ostream & out) const override{
-        Multimedia::affiche(out);
-        out <<"La duree est: "<<Video::duree<<endl;
-    }
-    void display() const override{
-        string p=Multimedia::get_path();
-        string n=Multimedia::get_name();
-        string command="open "+ p+n;
-        system(command.data());
-    }
+    void affiche(std::ostream & out) const override;
+    void display() const override;
 };
 
 #endif
