@@ -7,11 +7,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include "multimedia.h"
+#include "video.h"
+#include "photo.h"
 using namespace std;
 
 int main(int argc, const char *argv[])
 {
-    Multimedia * m=new Multimedia("photo1","/usr/bin/local");
-    m->affiche(std::cout);
+    Photo *p=new Photo("logo.png","~/Downloads/",0.5,0.5);
+    Video *v=new Video("vid.mp4", "~/Downloads/",10);
+    p->affiche(std::cout);
+    v->affiche(std::cout);
     return 0; 
 }

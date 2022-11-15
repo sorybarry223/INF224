@@ -19,7 +19,8 @@ public:
     void set_path(string p);
     string get_name() const;
     string get_path() const;
-    void affiche(std::ostream & out) const;
+    virtual void affiche(std::ostream & out) const;
+    virtual void display() const=0;
 };
 
 
