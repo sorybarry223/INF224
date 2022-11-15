@@ -22,7 +22,7 @@ int main(int argc, const char *argv[])
     multi[count++]=new Video("picture_1.png", "~/Downloads/",10);
     multi[count++]=new Photo("logo-2.png", "~/Downloads/",0.5,0.5);
     for(int i=0;i<count;++i){
-        multi[i]->display();
+        multi[i]->display(); 
     }
     return 0; 
 }
