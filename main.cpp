@@ -13,9 +13,16 @@ using namespace std;
 
 int main(int argc, const char *argv[])
 {
-    Photo *p=new Photo("logo.png","~/Downloads/",0.5,0.5);
-    Video *v=new Video("vid.mp4", "~/Downloads/",10);
-    p->affiche(std::cout);
-    v->affiche(std::cout);
+    
+    Multimedia **multi=new Multimedia *[5];//Tableau de pointeurs sur Multimedia
+    int count=0;
+    multi[count++]=new Photo("logo-2.png", "~/Downloads/",0.5,0.5);
+    multi[count++]=new Video("cvstandard", "~/Downloads/",10);
+    multi[count++]=new Photo("Photo_cv.JPG", "~/Downloads/",0.5,0.5);
+    multi[count++]=new Video("picture_1.png", "~/Downloads/",10);
+    multi[count++]=new Photo("logo-2.png", "~/Downloads/",0.5,0.5);
+    for(int i=0;i<count;++i){
+        multi[i]->display();
+    }
     return 0; 
 }
