@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "multimedia.h"
-#include "video.h"
 #include "photo.h"
 using namespace std;
 
