@@ -48,6 +48,8 @@
         "tuple": "cpp",
         "type_traits": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp"
-    }
+        "variant": "cpp",
+        "vector": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

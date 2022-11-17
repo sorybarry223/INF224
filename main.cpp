@@ -6,6 +6,10 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
+#include <memory>
+#include <vector>
+#include <list>
+
 #include "multimedia.h"
 #include "video.h"
 #include "photo.h"

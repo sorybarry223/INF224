@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
+#include <memory>
 #include "multimedia.h"
 #include "video.h"
 using namespace std;
