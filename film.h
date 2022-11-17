@@ -18,7 +18,7 @@ public:
         nbr_chap=nb;
         chapitre=chap;
     }
-    ~Film(){}
+    ~Film(){delete chapitre;}
     uint get_nbr() const{
         return nbr_chap;
     }

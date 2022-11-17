@@ -32,5 +32,7 @@ int main(int argc, const char *argv[])
 
     Film *f=new Film("my_film","~/Downloads/",10,5,chap);
     f->affiche_durees(chap,5);
+    delete[]chap;
+    f->affiche_durees(chap,5);
     return 0; 
 }
