@@ -28,6 +28,8 @@ private:
     Dictm dictm;
     Dictp dictp;
 public:
+    MAKER(){}
+    MAKER(Dictm dm,Dictp dp):dictm(dm),dictp(dp){}
     shared_ptr<Photo>  create_photo(string nom);
     shared_ptr<Video>  create_video(string nom); 
     shared_ptr<Film>   create_film(string nom); 
