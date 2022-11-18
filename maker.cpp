@@ -42,7 +42,7 @@ void MAKER::find_and_print_multimedia(string nom)  {
     if (it == dictm.end())
         cout <<"Nom introuvable"<<endl;
     else {
-        it->affiche(cout);
+        it->second->affiche(cout);
         //cout<<it->first<<endl;
     }
 }
@@ -51,16 +51,16 @@ void MAKER::find_and_print_groupe(string nom)  {
     if (it == dictp.end())
         cout <<"Nom introuvable"<<endl;
     else {
-        //it->affiche_groupe();
-        cout<<it->first<<endl;
+        it->second->affiche_groupe();
+        //cout<<it->first<<endl;
     }
 }
 
 void MAKER::display_maker_multimedia(string nom)  {
-    auto it = dictp.find(nom);
-    if (it == dictp.end())
+    auto it = dictm.find(nom);
+    if (it == dictm.end())
         cout <<"Nom introuvable"<<endl;
     else {
-        it->display();
+        it->second->display();
     }
 }

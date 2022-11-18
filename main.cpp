@@ -15,6 +15,7 @@
 #include "photo.h"
 #include "film.h"
 #include "groupe.h"
+#include "maker.h"
 using namespace std;
 
 int main(int argc, const char *argv[])
