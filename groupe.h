@@ -14,7 +14,7 @@
 #include "film.h"
 using namespace std;
 
-class GROUPE:public list<Multimedia *> groupe{
+class GROUPE:public list<Multimedia *>{
 private:
     string nom_groupe;
 public:

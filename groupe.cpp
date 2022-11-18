@@ -13,5 +13,5 @@
 using namespace std;
 
 void GROUPE::affiche_groupe() const{
-    for(auto& it:groupe) it->affiche(std::ostream cout);
+    for(auto& it:*this) it->affiche(cout);
 }
