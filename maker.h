@@ -17,24 +17,24 @@
 #include "groupe.h"
 using namespace std;
 
-//using GPM = std::shared_ptr<Multimedia>;
-//using GPP = std::shared_ptr<GROUPE>;
+using GPM = std::shared_ptr<Multimedia>;
+using GPP = std::shared_ptr<GROUPE>;
 
-using Dictm = std::map<string, Multimedia*>;
-using Dictp = std::map<string, GROUPE*>;
+using Dictm = std::map<string, GPM>;
+using Dictp = std::map<string, GPP>;
 
 class MAKER{
 private:
     Dictm dictm;
     Dictp dictp;
 public:
-    Photo*  create_photo(string nom);
-    Video*  create_video(string nom)   ; 
-    Film*   create_film(string nom)    ; 
-    GROUPE* create_groupe(string nom)  ; 
-    void find_and_print_multimedia(string nom)  ;
-    void find_and_print_groupe(string nom)  ;
-    void display_maker_multimedia(string nom)  ;
+    shared_ptr<Photo>  create_photo(string nom);
+    shared_ptr<Video>  create_video(string nom); 
+    shared_ptr<Film>   create_film(string nom); 
+    shared_ptr<GROUPE> create_groupe(string nom); 
+    void find_and_print_multimedia(string nom);
+    void find_and_print_groupe(string nom);
+    void display_maker_multimedia(string nom);
 };
 
 

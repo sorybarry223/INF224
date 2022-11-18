@@ -14,26 +14,26 @@
 #include "maker.h"
 using namespace std;
 
-Photo* MAKER::create_photo(string nom)   {
-    Photo* p(new Photo());
+shared_ptr<Photo> MAKER::create_photo(string nom)   {
+    shared_ptr<Photo> p(new Photo());
     dictm[nom]=p;
     return p;
 }
 
-Video* MAKER::create_video(string nom)   {
-    Video* v(new Video());
+shared_ptr<Video> MAKER::create_video(string nom)   {
+    shared_ptr<Video> v(new Video());
     dictm[nom]=v;
     return v;
 }
 
-Film* MAKER::create_film(string nom)   {
-    Film* f(new Film());
+shared_ptr<Film> MAKER::create_film(string nom)   {
+    shared_ptr<Film> f(new Film());
     dictm[nom]=f;
     return f;
 }
 
-GROUPE* MAKER::create_groupe(string nom)   {
-    GROUPE* g(new GROUPE());
+shared_ptr<GROUPE> MAKER::create_groupe(string nom)   {
+    shared_ptr<GROUPE> g(new GROUPE());
     dictp[nom]=g;
     return g;
 }
