@@ -14,7 +14,8 @@
 #include "film.h"
 using namespace std;
 
-class GROUPE:public list<Multimedia *>{
+using GP = std::shared_ptr<Multimedia>;
+class GROUPE:public list<GP>{
 private:
     string nom_groupe;
 public:

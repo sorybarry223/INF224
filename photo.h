@@ -17,7 +17,7 @@ public:
         latitude=lat;
         longitude=longi;
 }
-    ~Photo(){}
+    virtual ~Photo(){cout<<"Adieu monde cruel..."<<endl;}
     void set_lat(double lat){
             latitude=lat;
     }

@@ -15,7 +15,7 @@ public:
     Video(string n, string p, unsigned int d):Multimedia(n,p){
         duree=d;
     }
-    ~Video(){}
+   virtual ~Video(){cout<<"Adieu monde cruel..."<<endl;}
     void set_duree(unsigned int d){
         duree=d;
     }

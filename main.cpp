@@ -41,10 +41,14 @@ int main(int argc, const char *argv[])
     delete[]chap;
     f->affiche_durees(chap,5);*/
     GROUPE gp("gp1");
-    gp.push_back(new Photo("logo-2.png", "~/Downloads/",0.5,0.5));
-    gp.push_back(new Video("cvstandard", "~/Downloads/",10));
-    gp.push_back(new Photo("Photo_cv.JPG", "~/Downloads/",0.5,0.5));
-    gp.push_back(new Photo("logo-2.png", "~/Downloads/",0.5,0.5));
+    gp.push_back(shared_ptr<Photo>(new Photo("logo-2.png", "~/Downloads/",0.5,0.5)));
+    gp.push_back(shared_ptr<Video>(new Video("cvstandard", "~/Downloads/",10)));
+    gp.push_back(shared_ptr<Photo>(new Photo("Photo_cv.JPG", "~/Downloads/",0.5,0.5)));
+    gp.push_back(shared_ptr<Photo>(new Photo("logo-2.png", "~/Downloads/",0.5,0.5)));
+    //gp.affiche_groupe(); 
+    auto it=gp.begin();
+    advance(it,3);
+    gp.erase(gp.begin(), it);
     gp.affiche_groupe(); 
     return 0; 
 }
