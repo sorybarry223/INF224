@@ -45,6 +45,6 @@ int main(int argc, const char *argv[])
     gp.push_back(new Video("cvstandard", "~/Downloads/",10));
     gp.push_back(new Photo("Photo_cv.JPG", "~/Downloads/",0.5,0.5));
     gp.push_back(new Photo("logo-2.png", "~/Downloads/",0.5,0.5));
-    gp.affiche_groupe();
+    gp.affiche_groupe(); 
     return 0; 
 }
