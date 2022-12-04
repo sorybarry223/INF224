@@ -20,6 +20,10 @@ void Video::display() const{
 
 void Video::write(ofstream& file) const{
     file.open("multimedia.txt",ios::app);
+    //Error handeling
+    if(!file)
+        exit(0);
+        
     file.write((char*)this, sizeof(this));
 }
 

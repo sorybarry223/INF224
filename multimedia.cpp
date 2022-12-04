@@ -24,10 +24,18 @@ void Multimedia::affiche(std::ostream & out ) const{
 }
 void Multimedia::write(ofstream& file) const{
     file.open("multimedia.txt",ios::app);
+    //Error handeling
+    if(!file)
+        exit(0);
+        
     file.write((char*)this, sizeof(this));
 }
 
 void Multimedia::read(ifstream& file) const{
     file.open("multimedia.txt", ios::in);
+    //Error handeling
+    if(!file)
+        exit(EXIT_FAILURE);
+
     file.read((char*)this, sizeof(this));
 }

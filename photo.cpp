@@ -20,11 +20,19 @@ void Photo::display() const{
 
 void Photo::write(ofstream& file) const{
     file.open("multimedia.txt",ios::app);
+    //Error handeling
+    if(!file)
+        exit(0);
+        
     file.write((char*)this, sizeof(this));
 }
 
 void Photo::read(ifstream& file) const{
     file.open("multimedia.txt", ios::in);
+    //Error handeling
+    if(!file)
+        exit(0);
+        
     file.read((char*)this, sizeof(this));
     /*double max_lat{};
     string max_name{};
