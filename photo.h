@@ -33,6 +33,9 @@ public:
     void affiche(std::ostream & out) const override;
 
     void display() const override;
+
+    void write(ofstream& file)const override;
+    void read(ifstream& file)const override;
 };
 
 #endif

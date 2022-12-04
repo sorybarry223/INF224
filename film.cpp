@@ -21,3 +21,13 @@ void Film::affiche_durees(int *chap, uint d){
         cout <<chapitre[i]<<endl;
     }
 }
+
+void Film::write(ofstream& file) const{
+    file.open("multimedia.txt",ios::app);
+    file.write((char*)this, sizeof(this));
+}
+
+void Film::read(ifstream& file) const{
+    file.open("multimedia.txt", ios::in);
+    file.read((char*)this, sizeof(this));
+}

@@ -10,6 +10,7 @@
 #include <vector>
 #include <list>
 #include <sstream>
+#include <fstream>
 #include "tcpserver.h"
 
 #include "multimedia.h"
@@ -86,6 +87,12 @@ int main(int argc, const char *argv[])
     maker->find_and_print_groupe("sory");
     return 0; */
 
+
+
+
+
+
+/*
     // cree le TCPServer
   auto* server =
   new TCPServer( [&](std::string const& request, std::string& response) {
@@ -192,6 +199,23 @@ int main(int argc, const char *argv[])
     std::cerr << "Could not start Server on port " << PORT << std::endl;
     return 1;
   }
+*/
 
+//Sérialisation
+    Photo* p1(new Photo("logo-2.png", "~/Downloads/",0.5,0.5));
+    Photo* p6(new Photo("logo-3.png", "~/Downloads/",0.6,0.6));
+    Video* v1(new Video("cvstandard", "~/Downloads/",10));
+    Photo* p2(new Photo("Photo_cv.JPG", "~/Downloads/",0.5,0.5));
+    Photo* p3(new Photo("logo-2.png", "~/Downloads/",0.5,0.5));
+    ofstream f;
+    p1->write(f);
+    p2->write(f);
+    p3->write(f);
+    p6->write(f);
+    v1->write(f);
+    ifstream f1;
+    
+    p1->read(f1);
+    v1->read(f1);
   return 0;
 }

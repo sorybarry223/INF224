@@ -31,7 +31,8 @@ public:
     }
     void set_chap(uint nb);
     void affiche_durees(int *chap, uint d);
-    
+    void write(ofstream& file)const override;
+    void read(ifstream& file)const override;
 
 };
 

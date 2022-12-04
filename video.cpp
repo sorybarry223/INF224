@@ -17,3 +17,13 @@ void Video::display() const{
         string command="open "+ p+n;
         system(command.data());
 }
+
+void Video::write(ofstream& file) const{
+    file.open("multimedia.txt",ios::app);
+    file.write((char*)this, sizeof(this));
+}
+
+void Video::read(ifstream& file) const{
+    file.open("multimedia.txt", ios::in);
+    file.read((char*)this, sizeof(this));
+}

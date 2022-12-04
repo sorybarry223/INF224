@@ -6,6 +6,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
+#include <fstream>
 using namespace std;
 class Multimedia{
 private:
@@ -21,6 +22,9 @@ public:
     string get_path() const;
     virtual void affiche(std::ostream & out) const;
     virtual void display() const=0;
+    //Sérialisation
+    virtual void write(ofstream& file)const;
+    virtual void read(ifstream& file)const;
 };
 
 

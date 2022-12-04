@@ -2,7 +2,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
-
+#include <fstream>
 using namespace std;
 void Multimedia::set_name(string n){
     name=n;
@@ -21,4 +21,13 @@ string Multimedia::get_path() const{
 void Multimedia::affiche(std::ostream & out ) const{
     out <<"Le nom est: "<<Multimedia::get_name()<<endl;
     out <<"Le chemin est: "<<Multimedia::get_path()<<endl;
+}
+void Multimedia::write(ofstream& file) const{
+    file.open("multimedia.txt",ios::app);
+    file.write((char*)this, sizeof(this));
+}
+
+void Multimedia::read(ifstream& file) const{
+    file.open("multimedia.txt", ios::in);
+    file.read((char*)this, sizeof(this));
 }
