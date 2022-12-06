@@ -34,3 +34,7 @@
 myprog
 depend-myprog
 main.o
+*.class
+*.png
+/Java/*.class
+/Java/*.png
