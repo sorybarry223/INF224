@@ -27,6 +27,12 @@ public class Myframe extends JFrame implements ActionListener{
     
     JTextArea textArea =new JTextArea(3,20);
     String newline = "\n";
+
+    JMenuItem b1 = new JMenuItem("B1");
+    JMenuItem b2 = new JMenuItem("B2");
+    JMenuItem b3 = new JMenuItem("Exit");
+        
+    private static final long serialVersionUID = 1L;
     Myframe(){
        
         
@@ -77,11 +83,35 @@ public class Myframe extends JFrame implements ActionListener{
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //closes the frame
         this.setLayout(null);
+        //Textzones
         textField.setPreferredSize(new Dimension(250,50));
         textField.setBounds(300,150,300,50);
         textArea.setPreferredSize(new Dimension(550,50));
         textArea.setBounds(300,250,300,100);
+        textArea.setEditable(false);
+        new JScrollPane(textArea);
 
+        //Menubars
+        JMenuBar menuBar=new JMenuBar();
+        JMenu fileMenu = new JMenu("File");
+        JMenu editMenu = new JMenu("Edit");
+        JMenu helpMenu = new JMenu("Help");
+
+        
+
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+        b3.addActionListener(this);
+
+
+        fileMenu.add(b1);
+        fileMenu.add(b2);
+        fileMenu.add(b3);
+
+        menuBar.add(fileMenu);
+        menuBar.add(editMenu);
+        menuBar.add(helpMenu);
+        this.setJMenuBar(menuBar);
         this.add(textField);
         this.add(textArea);
         this.pack();
@@ -94,7 +124,7 @@ public class Myframe extends JFrame implements ActionListener{
 
     }
     public void actionPerformed(ActionEvent e){
-        if(e.getSource()==button){
+        if(e.getSource()==button || e.getSource()==button1 || e.getSource()==b1 || e.getSource()==b2){
            // System.out.println("poo");
            // button.setEnabled(false);
            String text = textField.getText();
@@ -102,17 +132,11 @@ public class Myframe extends JFrame implements ActionListener{
             textField.selectAll();
             label.setVisible(true);
         }
-        if(e.getSource()==button1){
-            // System.out.println("poo");
-            // button.setEnabled(false);
-            String text = textField.getText();
-             textArea.append(text + newline);
-             textField.selectAll();
-             label.setVisible(true);
-         }
-         if(e.getSource()==button2){
+        
+         if(e.getSource()==button2 || e.getSource()==b3){
             System.exit(0);
          }
+         
     }
      
 }
