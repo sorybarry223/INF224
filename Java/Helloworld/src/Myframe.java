@@ -7,6 +7,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.UnknownHostException;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import java.awt.*;
@@ -31,6 +33,7 @@ public class Myframe extends JFrame implements ActionListener{
     JMenuItem b1 = new JMenuItem("B1");
     JMenuItem b2 = new JMenuItem("B2");
     JMenuItem b3 = new JMenuItem("Exit");
+    JMenuItem b4 = new JMenuItem("Contact client");
         
     private static final long serialVersionUID = 1L;
     Myframe(){
@@ -96,6 +99,7 @@ public class Myframe extends JFrame implements ActionListener{
         JMenu fileMenu = new JMenu("File");
         JMenu editMenu = new JMenu("Edit");
         JMenu helpMenu = new JMenu("Help");
+        JMenu clientMenu = new JMenu("Client");
 
         
 
@@ -108,9 +112,12 @@ public class Myframe extends JFrame implements ActionListener{
         fileMenu.add(b2);
         fileMenu.add(b3);
 
+        clientMenu.add(b4);
+
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
         menuBar.add(helpMenu);
+        menuBar.add(clientMenu);
         this.setJMenuBar(menuBar);
         this.add(textField);
         this.add(textArea);
@@ -135,6 +142,18 @@ public class Myframe extends JFrame implements ActionListener{
         
          if(e.getSource()==button2 || e.getSource()==b3){
             System.exit(0);
+         }
+
+         if(e.getSource()==b4){
+            try {
+                new Client("localhost", 3331);
+            } catch (UnknownHostException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
          }
          
     }
