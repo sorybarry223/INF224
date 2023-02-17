@@ -92,7 +92,7 @@ int main(int argc, const char *argv[])
 
 
 
-/*
+
     // cree le TCPServer
   auto* server =
   new TCPServer( [&](std::string const& request, std::string& response) {
@@ -194,12 +194,16 @@ int main(int argc, const char *argv[])
 
   int status = server->run(PORT);
 
+/************************** Dans le serveur *********************************
+
+
+************************************************************/
   // en cas d'erreur
   if (status < 0) {
     std::cerr << "Could not start Server on port " << PORT << std::endl;
     return 1;
   }
-*/
+
 
 //Sérialisation
     Photo* p1(new Photo("logo-2.png", "~/Downloads/",0.5,0.5));
