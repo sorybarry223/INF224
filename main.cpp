@@ -55,7 +55,7 @@ int main(int argc, const char *argv[])
     gp.affiche_groupe(); */
 
 
-/*
+
     using GPM = std::shared_ptr<Multimedia>;
     using GPP = std::shared_ptr<GROUPE>;
 
@@ -64,6 +64,7 @@ int main(int argc, const char *argv[])
     Dictm dm;
     Dictp dp;
     MAKER *maker=new MAKER(dm,dp);
+    /*
     shared_ptr<Photo> p0;
     p0=maker->create_photo("logo-2.png");
     p0->set_name("logo-2.png");
@@ -72,8 +73,8 @@ int main(int argc, const char *argv[])
     p0->set_long(0.5);
     maker->find_and_print_multimedia("logo-2.png");
     maker->display_maker_multimedia("logo-2.png");
-
-    shared_ptr<GROUPE> p00;
+*/
+    /*shared_ptr<GROUPE> p00;
     p00 = maker->create_groupe("sory");
     p00->push_back(shared_ptr<Photo>(new Photo("logo-2.png", "~/Downloads/",0.5,0.5)));
     p00->push_back(shared_ptr<Video>(new Video("cvstandard", "~/Downloads/",10)));
@@ -117,8 +118,9 @@ int main(int argc, const char *argv[])
     string nom{};
     string substrTest{};
     size_t delimiter = request.find(" ");
-    //Get the request via command line
-    
+    //A group
+    static shared_ptr<GROUPE> g1;
+
     //Now I will compare my action to the action part of my request
     substrTest = request.substr(0,delimiter);
     nom = request.substr(delimiter +1);
@@ -129,11 +131,15 @@ int main(int argc, const char *argv[])
 
     if(substrTest == create_photo ){
         shared_ptr<Photo> p1;
-        p1=maker->create_photo("logo-2.png");
-        p1->set_name("logo-2.png");
+        p1=maker->create_photo(nom);
+        p1->set_name(nom);
         p1->set_path("~/Downloads/");
         p1->set_lat(0.5);
         p1->set_long(0.5);
+        //print info of the photo(optional)
+        maker->find_and_print_multimedia(nom);
+        //print the photo(optional)
+        maker->display_maker_multimedia(nom);
     }
 
     //If request is to create a video
@@ -177,19 +183,19 @@ int main(int argc, const char *argv[])
         maker->display_maker_multimedia(nom);
     }
     // If request is to create a group
-    const char * c_groupe = "create_group";
-    std::string create_groupe = c_groupe;
+    const char * c_group = "create_group";
+    std::string create_group = c_group;
 
-    if(substrTest==create_groupe){
-        shared_ptr<GROUPE> g1;
+    if(substrTest==create_group){
+        
         g1=maker->create_groupe(nom);
     }
     //If request is to add a photo to group
-    const char * add_p_groupe = "add_photo_to_group";
-    std::string add_photo_to_group = add_p_groupe;
+    const char * add_p_group = "add_photo_to_group";
+    std::string add_photo_to_group = add_p_group;
     
     if(substrTest==add_photo_to_group){
-        shared_ptr<GROUPE> g1;
+  
         g1->push_back(shared_ptr<Photo>(new Photo(nom, "~/Downloads/",0.5,0.5)));
     }
     //If request is to add a video to group
@@ -204,7 +210,7 @@ int main(int argc, const char *argv[])
     const char * f_and_p_group = "find_and_print_group";
     std::string find_and_print_group = f_and_p_group;
 
-    if(substrTest=="find_and_print_group"){
+    if(substrTest==find_and_print_group){
         maker->find_and_print_groupe(nom);
     }
     
