@@ -87,7 +87,8 @@ int main(int argc, const char *argv[])
 
 
 
-
+    //A group
+    static shared_ptr<GROUPE> g1;
 
     // cree le TCPServer
   auto* server =
@@ -103,23 +104,20 @@ int main(int argc, const char *argv[])
    // Or find and print a group
    // And create a group
 
-    // For my case, the request must be under the format:
-    // "action$name%" Which means that actions and names must be separated by '$'
-    // and the request must finish by '%'
-    using GPM = std::shared_ptr<Multimedia>;
+    /*using GPM = std::shared_ptr<Multimedia>;
     using GPP = std::shared_ptr<GROUPE>;
     using Dictm = std::map<string, GPM>;
     using Dictp = std::map<string, GPP>;
     Dictm dm;
     Dictp dp;
-    MAKER *maker=new MAKER(dm,dp);
+    MAKER *maker=new MAKER(dm,dp);*/
+
     //1- Create a photo object
     string action{};
     string nom{};
     string substrTest{};
     size_t delimiter = request.find(" ");
-    //A group
-    static shared_ptr<GROUPE> g1;
+    
 
     //Now I will compare my action to the action part of my request
     substrTest = request.substr(0,delimiter);
