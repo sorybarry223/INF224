@@ -69,21 +69,21 @@ int main(int argc, const char *argv[])
     Dictm dm;
     Dictp dp;
     MAKER *maker=new MAKER(dm,dp);
-    shared_ptr<Photo> p1;
-    p1=maker->create_photo("logo-2.png");
-    p1->set_name("logo-2.png");
-    p1->set_path("~/Downloads/");
-    p1->set_lat(0.5);
-    p1->set_long(0.5);
+    shared_ptr<Photo> p0;
+    p0=maker->create_photo("logo-2.png");
+    p0->set_name("logo-2.png");
+    p0->set_path("~/Downloads/");
+    p0->set_lat(0.5);
+    p0->set_long(0.5);
     maker->find_and_print_multimedia("logo-2.png");
     maker->display_maker_multimedia("logo-2.png");
 
-    shared_ptr<GROUPE> p2;
-    p2=maker->create_groupe("sory");
-    p2->push_back(shared_ptr<Photo>(new Photo("logo-2.png", "~/Downloads/",0.5,0.5)));
-    p2->push_back(shared_ptr<Video>(new Video("cvstandard", "~/Downloads/",10)));
-    p2->push_back(shared_ptr<Photo>(new Photo("Photo_cv.JPG", "~/Downloads/",0.5,0.5)));
-    p2->push_back(shared_ptr<Photo>(new Photo("logo-2.png", "~/Downloads/",0.5,0.5)));
+    shared_ptr<GROUPE> p00;
+    p00 = maker->create_groupe("sory");
+    p00->push_back(shared_ptr<Photo>(new Photo("logo-2.png", "~/Downloads/",0.5,0.5)));
+    p00->push_back(shared_ptr<Video>(new Video("cvstandard", "~/Downloads/",10)));
+    p00->push_back(shared_ptr<Photo>(new Photo("Photo_cv.JPG", "~/Downloads/",0.5,0.5)));
+    p00->push_back(shared_ptr<Photo>(new Photo("logo-2.png", "~/Downloads/",0.5,0.5)));
     maker->find_and_print_groupe("sory");
     return 0; */
 
@@ -97,6 +97,9 @@ int main(int argc, const char *argv[])
   auto* server =
   new TCPServer( [&](std::string const& request, std::string& response) {
 
+    // the request sent by the client to the server
+    std::cout << "request: " << request << std::endl;
+
    // Split the request into different requests:
    // Request can be find and print a multimedia object
    // Or play a multimedia object
@@ -107,6 +110,8 @@ int main(int argc, const char *argv[])
     // For my case, the request must be under the format:
     // "action$name%" Which means that actions and names must be separated by '$'
     // and the request must finish by '%'
+    using GPM = std::shared_ptr<Multimedia>;
+    using GPP = std::shared_ptr<GROUPE>;
     using Dictm = std::map<string, GPM>;
     using Dictp = std::map<string, GPP>;
     Dictm dm;
@@ -116,29 +121,43 @@ int main(int argc, const char *argv[])
     string action{};
     string nom{};
     string substrTest{};
-    
+    size_t delimiter = request.find(" ");
     //Get the request via command line
-    getline(cin, action,'$');
-    getline(cin, nom);
+    
     //Now I will compare my action to the action part of my request
-    substrTest = request.substr(0,12);
-    if(substrTest=="create_photo"){
+    substrTest = request.substr(0,delimiter);
+    nom = request.substr(delimiter +1);
+
+    //If request is to create a photo
+    const char * crt_p = "create_photo";
+    std::string create_photo = crt_p;
+
+    if(substrTest == create_photo ){
         shared_ptr<Photo> p1;
-        p1=maker->create_photo(nom);
-        p1->set_name(nom);
+        p1=maker->create_photo("logo-2.png");
+        p1->set_name("logo-2.png");
         p1->set_path("~/Downloads/");
         p1->set_lat(0.5);
         p1->set_long(0.5);
     }
-    if(substrTest=="create_video"){
+
+    //If request is to create a video
+    const char * crt_v = "create_video";
+    std::string create_video = crt_v;
+
+    if(substrTest==create_video){
         shared_ptr<Video> v1;
         v1=maker->create_video(nom);
         v1->set_name(nom);
         v1->set_path("~/Downloads/");
         v1->set_duree(10);
     }
-    substrTest = request.substr(0,11);
-    if(substrTest=="create_film"){
+
+    //If request is to create a film
+    const char * crt_f = "create_film";
+    std::string create_film = crt_f;
+
+    if(substrTest==create_film){
         shared_ptr<Film> f1;
         f1=maker->create_film(nom);
         f1->set_name(nom);
@@ -148,35 +167,48 @@ int main(int argc, const char *argv[])
         f1->set_chap(10);
     }
     //If request is to find and print a multimedia
-    substrTest = request.substr(0,14);
-    if(substrTest=="find_and_print"){
+    const char * f_a_print = "find_and_print";
+    std::string find_and_print = f_a_print;
+
+    if(substrTest== find_and_print){
         maker->find_and_print_multimedia(nom);
     }
+
     //If request is to play a multimedia
-    substrTest = request.substr(0,4);
-    if(substrTest=="play"){
+    const char * pl = "play";
+    std::string play = pl;
+
+    if(substrTest==play){
         maker->display_maker_multimedia(nom);
     }
     // If request is to create a group
-    substrTest = request.substr(0,12);
-    if(substrTest=="create_group"){
+    const char * c_groupe = "create_group";
+    std::string create_groupe = c_groupe;
+
+    if(substrTest==create_groupe){
         shared_ptr<GROUPE> g1;
         g1=maker->create_groupe(nom);
     }
     //If request is to add a photo to group
-    substrTest = request.substr(0,18);
-    if(substrTest=="add_photo_to_group"){
+    const char * add_p_groupe = "add_photo_to_group";
+    std::string add_photo_to_group = add_p_groupe;
+    
+    if(substrTest==add_photo_to_group){
         shared_ptr<GROUPE> g1;
         g1->push_back(shared_ptr<Photo>(new Photo(nom, "~/Downloads/",0.5,0.5)));
     }
     //If request is to add a video to group
-    substrTest = request.substr(0,18);
-    if(substrTest=="add_video_to_group"){
+    const char * add_v_groupe = "add_video_to_group";
+    std::string add_video_to_group = add_v_groupe;
+
+    if(substrTest==add_video_to_group){
         shared_ptr<GROUPE> g1;
         g1->push_back(shared_ptr<Video>(new Video(nom, "~/Downloads/",10)));
     }
      //If request is to find and print a group
-    substrTest = request.substr(0,20);
+    const char * f_and_p_group = "find_and_print_group";
+    std::string find_and_print_group = f_and_p_group;
+
     if(substrTest=="find_and_print_group"){
         maker->find_and_print_groupe(nom);
     }

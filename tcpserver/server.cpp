@@ -29,7 +29,6 @@ int main(int argc, char* argv[])
     return true;
   });
 
-
   // lance la boucle infinie du serveur
   std::cout << "Starting Server on port " << PORT << std::endl;
 
