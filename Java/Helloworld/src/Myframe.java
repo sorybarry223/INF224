@@ -20,6 +20,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 public class Myframe extends JFrame implements ActionListener{
 
+    static final String DEFAULT_HOST = "localhost";
+    static final int DEFAULT_PORT = 3331;
+    private Client client;
+    private JTextField requestField;
+
     JButton button=new JButton();
     JButton button1=new JButton();
     JButton button2=new JButton();
@@ -107,7 +112,17 @@ public class Myframe extends JFrame implements ActionListener{
         b2.addActionListener(this);
         b3.addActionListener(this);
 
-
+        // Initialize the client
+        try {
+            client = new Client(DEFAULT_HOST, DEFAULT_PORT);
+          } catch (Exception e) {
+            System.err.println("Client: Couldn't connect to " + DEFAULT_HOST + ":" + DEFAULT_PORT);
+            System.exit(1);
+          }
+        
+        // Add an action listener to the button to send the request to the server
+        b4.addActionListener(this);
+        
         fileMenu.add(b1);
         fileMenu.add(b2);
         fileMenu.add(b3);
@@ -132,9 +147,9 @@ public class Myframe extends JFrame implements ActionListener{
     }
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==button || e.getSource()==button1 || e.getSource()==b1 || e.getSource()==b2){
-           // System.out.println("poo");
-           // button.setEnabled(false);
-           String text = textField.getText();
+            // System.out.println("poo");
+            // button.setEnabled(false);
+            String text = textField.getText();
             textArea.append(text + newline);
             textField.selectAll();
             label.setVisible(true);
@@ -144,7 +159,7 @@ public class Myframe extends JFrame implements ActionListener{
             System.exit(0);
          }
 
-         if(e.getSource()==b4){
+        /* if(e.getSource()==b4){
             try {
                 new Client("localhost", 3331);
             } catch (UnknownHostException e1) {
@@ -154,7 +169,13 @@ public class Myframe extends JFrame implements ActionListener{
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
-         }
+        }*/
+        if (e.getSource() == b4) {
+            String request = textField.getText();
+            String response = client.send(request);
+            textArea.append("Response: " + response + newline);
+        }
+        
          
     }
      
